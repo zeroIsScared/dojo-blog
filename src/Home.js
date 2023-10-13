@@ -9,50 +9,33 @@ const Home = () => {
     ]);
 
     // eslint-disable-next-line no-unused-vars
-    const [newBlog, setNewBlog] = useState({
-        title: '',
-        body: '', 
-        author: '',
-        id: 0,
-    });
+    let newBlog = { }
 
     const inputHandler = (event) => {
         const {name, value} = event.target;
 
         // eslint-disable-next-line no-const-assign
-        setNewBlog  ( (prev) => {
-
-            if (name === 'title') {                
-                return {
-                    ...prev, 
-                    title: value,
-                    id: blogs.length+1,
-                }
+        
+        if (name === 'title') {                
+            newBlog.title = value;                 
+            newBlog.id=  blogs.length+1;                
     
-            } else if (name === 'body') {
-                return {
-                    ...prev, 
-                    body: value,
-                }
-            }else if (name === 'author') {
-                return {
-                    ...prev, 
-                    author: value,
-                }
-            }
-           
-        })        
-       
+        } else if (name === 'body') {
+            newBlog.body = value;
+                
+        }else if (name === 'author') {
+            newBlog.author = value;
+        }        
     }        
             
     const addBlogHandler = () => {
 
-        setBlogs(   [
+        setBlogs([
             ...blogs,
             newBlog
-        ]
-            
-        )
+        ]);
+
+        newBlog = {};
     }    
 
     return ( 
